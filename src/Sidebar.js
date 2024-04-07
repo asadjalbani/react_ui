@@ -13,7 +13,8 @@ import WifiIcon from '@mui/icons-material/Wifi';
 import FilterNoneOutlinedIcon from '@mui/icons-material/FilterNoneOutlined';
 import SettingsIcon from '@mui/icons-material/Settings';
 import { Avatar } from '@mui/material';
-function Sidebar() {
+
+function Sidebar({ onItemClick }) {
   return (
     <div style={{ width: '250px', position: 'fixed', top: '64px', bottom: '0', left: '0' }}>
       <Box p={2} display="flex" alignItems="center">
@@ -25,27 +26,27 @@ function Sidebar() {
       </Box>
       <Divider />
       <List>
-        <ListItem button>
-          <ListItemIcon><FormatListBulletedOutlinedIcon/></ListItemIcon>
+        <ListItem button onClick={() => onItemClick('accounts')}>
+          <ListItemIcon><FormatListBulletedOutlinedIcon /></ListItemIcon>
           <ListItemText primary="Accounts" />
         </ListItem>
-        <ListItem button>
+        <ListItem button onClick={() => onItemClick('groups')}>
           <ListItemIcon><GroupIcon /></ListItemIcon>
           <ListItemText primary="Groups" />
         </ListItem>
-        <ListItem button>
+        <ListItem button onClick={() => onItemClick('archive')}>
           <ListItemIcon><Inventory2OutlinedIcon/></ListItemIcon>
           <ListItemText primary="Archive" />
         </ListItem>
-        <ListItem button>
+        <ListItem button onClick={() => onItemClick('proxies')}>
           <ListItemIcon><WifiIcon /></ListItemIcon>
           <ListItemText primary="Proxies" />
         </ListItem>
-        <ListItem button>
+        <ListItem button onClick={() => onItemClick('referal')}>
           <ListItemIcon><FilterNoneOutlinedIcon /></ListItemIcon>
           <ListItemText primary="Referal" />
         </ListItem>
-        <ListItem button>
+        <ListItem button onClick={() => onItemClick('gptSetup')}>
           <ListItemIcon><SettingsIcon /></ListItemIcon>
           <ListItemText primary="GPT 4 - Setup" />
         </ListItem>

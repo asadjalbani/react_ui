@@ -10,24 +10,25 @@ function SwipeRoutineModal({ open, onClose, onSubmit }) {
   const [startHour, setStartHour] = useState('');
   const [endHour, setEndHour] = useState('');
   const [likesPerDay, setLikesPerDay] = useState('');
-  const [authToken, setAuthToken] = useState('');
+  const [leftSwipePercentage, setLeftSwipePercentage] = useState('');  // New state for left swipe percentage
 
   const handleClose = () => {
     onClose();
     setStartHour('');
     setEndHour('');
     setLikesPerDay('');
-    setAuthToken('');
+    setLeftSwipePercentage('');  // Resetting left swipe percentage on close
   };
 
   const handleConfirm = async () => {
     try {
-      const url = new URL('http://3.70.194.53:8000/swipe_routine');
+      const url = new URL('http://3.70.194.53:8000/set_swipe_routine_settings');
       const params = new URLSearchParams({
         start_hour: startHour,
         end_hour: endHour,
         likes_per_day: likesPerDay,
-        auth_token: 'e1f74c37-aaa4-4772-bd0e-8938b0a6433e'
+        left_swipe_percentage: leftSwipePercentage,  // Including left swipe percentage in the params
+        auth_token: ''
       });
       const response = await fetch(`${url.toString()}?${params.toString()}`, {
         method: 'POST',
@@ -78,6 +79,15 @@ function SwipeRoutineModal({ open, onClose, onSubmit }) {
           fullWidth
           value={likesPerDay}
           onChange={(e) => setLikesPerDay(e.target.value)}
+        />
+        <TextField  // New TextField for left swipe percentage
+          margin="dense"
+          id="left-swipe-percentage"
+          label="Left Swipe Percentage"
+          type="number"
+          fullWidth
+          value={leftSwipePercentage}
+          onChange={(e) => setLeftSwipePercentage(e.target.value)}
         />
       </DialogContent>
       <DialogActions>

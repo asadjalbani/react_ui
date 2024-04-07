@@ -6,7 +6,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import TextField from '@mui/material/TextField';
 
-function AddAccountButton() {
+function AddAccountWithNumber() {
   const [open, setOpen] = useState(false);
   const [mobileNumber, setMobileNumber] = useState('');
   const [otp, setOtp] = useState('');
@@ -78,7 +78,7 @@ function AddAccountButton() {
   return (
     <div>
       <Button variant="contained" color="primary" style={{ marginTop: '20px', width: '50%' }} onClick={handleClickOpen}>
-        Add Account
+        Add Account With Number
       </Button>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Enter Mobile Number</DialogTitle>
@@ -126,4 +126,4 @@ function AddAccountButton() {
   );
 }
 
-export default AddAccountButton;
+export default AddAccountWithNumber;
