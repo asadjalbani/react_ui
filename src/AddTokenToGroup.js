@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogTitle from '@mui/material/DialogTitle';
-import TextField from '@mui/material/TextField';
+import React, { useState } from "react";
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogTitle from "@mui/material/DialogTitle";
+import TextField from "@mui/material/TextField";
 
 function AddTokenToGroup() {
   const [open, setOpen] = useState(false);
-  const [authToken, setAuthToken] = useState('');
-  const [groupName, setGroupName] = useState('');
+  const [authToken, setAuthToken] = useState("");
+  const [groupName, setGroupName] = useState("");
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -17,40 +17,48 @@ function AddTokenToGroup() {
 
   const handleClose = () => {
     setOpen(false);
-    setAuthToken(''); // Reset auth token
-    setGroupName(''); // Reset group name
+    setAuthToken(""); // Reset auth token
+    setGroupName(""); // Reset group name
   };
 
   const handleAddTokenToGroup = async () => {
     try {
-      const url = new URL('http://3.70.194.53:8000/add_token_to_group');
-      url.searchParams.append('auth_token', authToken);
-      url.searchParams.append('group_name', groupName);
+      const url = new URL("http://18.159.34.32:8000/add_token_to_group");
+      url.searchParams.append("auth_token", authToken);
+      url.searchParams.append("group_name", groupName);
 
       const response = await fetch(url.toString(), {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
       });
 
       if (response.ok) {
-        console.log('Token added to group successfully:', { authToken, groupName });
+        console.log("Token added to group successfully:", {
+          authToken,
+          groupName,
+        });
         setOpen(false); // Close dialog on success
         // Here you can update the UI to reflect the successful addition
       } else {
-        console.error('Failed to add token to group:', response.statusText);
+        console.error("Failed to add token to group:", response.statusText);
         // Handle error (e.g., display an error message)
       }
     } catch (error) {
-      console.error('Error adding token to group:', error);
+      console.error("Error adding token to group:", error);
       // Handle network or unexpected errors
     }
   };
 
   return (
     <div>
-      <Button variant="contained" color="primary" style={{ marginTop: '20px', width: '50%' }} onClick={handleClickOpen}>
+      <Button
+        variant="contained"
+        color="primary"
+        style={{ marginTop: "20px", width: "300px", borderRadius: "40px" }}
+        onClick={handleClickOpen}
+      >
         Add Token to Group
       </Button>
       <Dialog open={open} onClose={handleClose}>

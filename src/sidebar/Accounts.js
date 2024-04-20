@@ -1,11 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import AddAccountWithToken from '../AddAccountWithToken';
-import AddAccountWithBatchTokens from '../AddAccountsWithBatchTokens';
-import AddAccountWithNumber from '../AddAccountWithNumber';
+import React from "react";
+import AddAccountWithToken from "../AddAccountWithToken";
+import AddAccountWithBatchTokens from "../AddAccountsWithBatchTokens";
+import AddAccountWithNumber from "../AddAccountWithNumber";
 
 function Accounts() {
   return (
-    <div>
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "start",
+        gap: 20,
+      }}
+    >
       <AddAccountWithToken />
       <AddAccountWithBatchTokens />
       <AddAccountWithNumber />
