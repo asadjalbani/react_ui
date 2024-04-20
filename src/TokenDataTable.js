@@ -137,8 +137,17 @@ function TokenDataTable() {
   };
 
   return (
-    <div>
-      <>
+    <>
+      {alert && <Alert severity="info">"Token Deleted Successfully!" </Alert>}
+      <div
+        style={{
+          position: "sticky",
+          top: 0,
+          zIndex: 1,
+          mx: 2,
+          my: 2,
+        }}
+      >
         <TextField
           id="outlined-start-adornment"
           sx={{
@@ -169,150 +178,150 @@ function TokenDataTable() {
           }}
           variant="outlined"
         />
-      </>
-      {alert && <Alert severity="info">"Token Deleted Successfully!" </Alert>}
-      {isOpen && <TransitionsModal />}
-      <TableContainer>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>Serial</TableCell>
-              <TableCell>Group</TableCell>
-              <TableCell>Upgrade</TableCell>
-              <TableCell>Account #</TableCell>
-              <TableCell>Bio</TableCell>
-              <TableCell>Proxy</TableCell>
-              <TableCell>Status</TableCell>
-              <TableCell>Actions</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {tokens.length > 0 ? (
-              tokens
-                .filter((token) =>
-                  token[0].toLowerCase().includes(searchQuery.toLowerCase())
-                )
-                .map((token, index) => (
-                  <TableRow key={index}>
-                    <TableCell>{index + 1}</TableCell>
-                    <TableCell>{"No Group"}</TableCell>
-                    <TableCell>
-                      <UpgradeIcon
-                        onClick={openUpgradeModal}
-                        sx={{
-                          height: "30px",
-                          width: "30px",
-                          backgroundColor: "#165FC7",
-                          color: "white",
-                          borderRadius: "25px",
-                          padding: 0.5,
-                          ":hover": {
-                            cursor: "pointer",
-                            backgroundColor: "lightBlue",
-                            color: "#165FC7",
-                          },
-                        }}
-                      />
-                    </TableCell>
-                    <TableCell>{token[0]}</TableCell>
-                    <TableCell></TableCell>
-                    <TableCell>
-                      {token[1] ? token[1] : ""} <br></br>
-                      {token[2] ? token[2] : ""}
-                    </TableCell>
-                    <TableCell>
-                      <span
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          color: isRunning ? "green" : "red",
-                        }}
-                      >
-                        <FiberManualRecordIcon />{" "}
-                        {isRunning ? "Running" : "Off"}
-                      </span>
-                    </TableCell>
-                    <TableCell>
-                      <Box>
-                        <IconButton onClick={() => updateBio(token[0])}>
-                          <SettingsIcon />
-                        </IconButton>
-                        <IconButton onClick={() => deleteToken(token[0])}>
-                          <DeleteIcon />
-                        </IconButton>
-                      </Box>
-                    </TableCell>
-                  </TableRow>
-                ))
-            ) : (
+
+        {isOpen && <TransitionsModal />}
+        <TableContainer>
+          <Table>
+            <TableHead>
               <TableRow>
-                <TableCell colSpan={7}>No tokens available</TableCell>
+                <TableCell>Serial</TableCell>
+                <TableCell>Group</TableCell>
+                <TableCell>Upgrade</TableCell>
+                <TableCell>Account #</TableCell>
+                <TableCell>Bio</TableCell>
+                <TableCell>Proxy</TableCell>
+                <TableCell>Status</TableCell>
+                <TableCell>Actions</TableCell>
               </TableRow>
-            )}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "flex-end",
-          alignItems: "center",
-          padding: "10px",
-        }}
-      >
-        {isRunning ? (
-          <Button
-            variant="contained"
-            onClick={handleSwipeRoutineStop}
-            style={{
-              color: "primary",
-              borderRadius: "35px",
-              fontSize: "16px",
-              height: "40px",
-              width: "100px",
-              margin: "5px",
-            }}
-            aria-label="play"
-          >
-            Stop <StopCircleIcon style={{ marginLeft: "5px" }} />
-          </Button>
-        ) : (
-          <Button
-            variant="contained"
-            onClick={handleSwipeRoutineSubmit}
-            style={{
-              color: "primary",
-              borderRadius: "35px",
-              fontSize: "16px",
-              height: "40px",
-              width: "100px",
-              margin: "5px",
-            }}
-            aria-label="play"
-          >
-            Play <PlayCircleIcon />
-          </Button>
-        )}
+            </TableHead>
+            <TableBody>
+              {tokens.length > 0 ? (
+                tokens
+                  .filter((token) =>
+                    token[0].toLowerCase().includes(searchQuery.toLowerCase())
+                  )
+                  .map((token, index) => (
+                    <TableRow key={index}>
+                      <TableCell>{index + 1}</TableCell>
+                      <TableCell>{"No Group"}</TableCell>
+                      <TableCell>
+                        <UpgradeIcon
+                          onClick={openUpgradeModal}
+                          sx={{
+                            height: "30px",
+                            width: "30px",
+                            backgroundColor: "#165FC7",
+                            color: "white",
+                            borderRadius: "25px",
+                            padding: 0.5,
+                            ":hover": {
+                              cursor: "pointer",
+                              backgroundColor: "lightBlue",
+                              color: "#165FC7",
+                            },
+                          }}
+                        />
+                      </TableCell>
+                      <TableCell>{token[0]}</TableCell>
+                      <TableCell></TableCell>
+                      <TableCell>
+                        {token[1] ? token[1] : ""} <br></br>
+                        {token[2] ? token[2] : ""}
+                      </TableCell>
+                      <TableCell>
+                        <span
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            color: isRunning ? "green" : "red",
+                          }}
+                        >
+                          <FiberManualRecordIcon />{" "}
+                          {isRunning ? "Running" : "Off"}
+                        </span>
+                      </TableCell>
+                      <TableCell>
+                        <Box>
+                          <IconButton onClick={() => updateBio(token[0])}>
+                            <SettingsIcon />
+                          </IconButton>
+                          <IconButton onClick={() => deleteToken(token[0])}>
+                            <DeleteIcon />
+                          </IconButton>
+                        </Box>
+                      </TableCell>
+                    </TableRow>
+                  ))
+              ) : (
+                <TableRow>
+                  <TableCell colSpan={7}>No tokens available</TableCell>
+                </TableRow>
+              )}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-end",
+            alignItems: "center",
+            padding: "10px",
+          }}
+        >
+          {isRunning ? (
+            <Button
+              variant="contained"
+              onClick={handleSwipeRoutineStop}
+              style={{
+                color: "primary",
+                borderRadius: "35px",
+                fontSize: "16px",
+                height: "40px",
+                width: "100px",
+                margin: "5px",
+              }}
+              aria-label="play"
+            >
+              Stop <StopCircleIcon style={{ marginLeft: "5px" }} />
+            </Button>
+          ) : (
+            <Button
+              variant="contained"
+              onClick={handleSwipeRoutineSubmit}
+              style={{
+                color: "primary",
+                borderRadius: "35px",
+                fontSize: "16px",
+                height: "40px",
+                width: "100px",
+                margin: "5px",
+              }}
+              aria-label="play"
+            >
+              Play <PlayCircleIcon />
+            </Button>
+          )}
+        </div>
+
+        <SwipeRoutineModal
+          open={swipeModalOpen}
+          onClose={handleCloseSwipeModal}
+          onSubmit={handleSwipeRoutineSubmit}
+        />
+
+        <UpdateBioModal
+          open={updateBioModalOpen}
+          onClose={handleCloseUpdateBioModal}
+          onSubmit={handleUpdateBioSubmit}
+        />
+        <AddAccountWithNumber
+          open={addAccountModalOpen}
+          onClose={handleCloseAddAccountModal}
+          onSubmit={handleUpgradeModal}
+        />
       </div>
-
-      <SwipeRoutineModal
-        open={swipeModalOpen}
-        onClose={handleCloseSwipeModal}
-        onSubmit={handleSwipeRoutineSubmit}
-      />
-
-      <UpdateBioModal
-        open={updateBioModalOpen}
-        onClose={handleCloseUpdateBioModal}
-        onSubmit={handleUpdateBioSubmit}
-      />
-      <AddAccountWithNumber
-        open={addAccountModalOpen}
-        onClose={handleCloseAddAccountModal}
-        onSubmit={handleUpgradeModal}
-      />
-    </div>
+    </>
   );
 }
 
