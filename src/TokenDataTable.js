@@ -82,6 +82,9 @@ function TokenDataTable() {
   // const handleOpenSwipeModal = () => {
   //   setSwipeModalOpen(true);
   // };
+  const handleSwipeRoutineStop = () => {
+    setIsRunning(false);
+  };
 
   const handleCloseSwipeModal = () => {
     setSwipeModalOpen(false);
@@ -261,7 +264,7 @@ function TokenDataTable() {
         {isRunning ? (
           <Button
             variant="contained"
-            onClick={handleSwipeRoutineSubmit}
+            onClick={handleSwipeRoutineStop}
             style={{
               color: "primary",
               borderRadius: "35px",
