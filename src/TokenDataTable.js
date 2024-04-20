@@ -163,7 +163,7 @@ function TokenDataTable() {
                 onClick={() => setSearchQuery("")}
                 position="end"
               >
-                <CloseIcon />
+                {searchQuery.length ? <CloseIcon /> : ""}
               </InputAdornment>
             ),
           }}
